@@ -41,6 +41,7 @@ final class PizzaViewModel {
 
 final class PizzaViewController: UIViewController {
     private lazy var previousProductIndex: Int = productSizeSegmentedView.selectedSegmentIndex
+    @IBOutlet weak var cartButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productTitleLabel: UILabel!
@@ -70,15 +71,48 @@ final class PizzaViewController: UIViewController {
         productImageView.image = UIImage(named: "pizza_full")
         // Segmented control
         productSizeSegmentedView.addTarget(self, action: #selector(productSizeUpdated), for: .valueChanged)
+        submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
     }
     
+    @objc private func submitButtonTapped() {
+        animateMainProductToCart()
+        // animateAddonProductToCart()
+    }
     
+    /* private func animateAddonProductToCart() {
+        let indexPath = IndexPath(item: 0, section: 0)
+        let cell = addonCollectionView.cellForItem(at: indexPath) as! AddonCollectionViewCell
+        
+        let copyProduct: UIImageView = cell.addonImageView.copyViewAndAdd(to: self.view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            cell.addonImageView.updateSizeScaleTo(x: 0.01, y: 0.01)
+            UIView.animate(withDuration: 1) {
+                copyProduct.center = self.cartButton.center
+                self.view.layoutIfNeeded()
+            } completion: { _ in
+                copyProduct.removeFromSuperview()
+            }
+        }
+    } */
+    
+    private func animateMainProductToCart() {
+        let copyProduct: UIImageView = productImageView.copyViewAndAdd(to: self.view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            copyProduct.updateSizeScaleTo(x: 0.01, y: 0.01)
+            UIView.animate(withDuration: 1) {
+                copyProduct.center = self.cartButton.center
+                self.view.layoutIfNeeded()
+            } completion: { _ in
+                copyProduct.removeFromSuperview()
+            }
+        }
+    }
     
     @objc private func productSizeUpdated(_ sender: UISegmentedControl) {
         let clockWise: Bool = previousProductIndex < sender.selectedSegmentIndex
         self.productImageView.rotate(clockWise: clockWise)
         let itemSize: ProductSize = .init(rawValue: sender.selectedSegmentIndex) ?? .medium
-        self.productImageView.updateSize(to: itemSize)
+        self.productImageView.updateSizeScale(to: itemSize)
         self.previousProductIndex = sender.selectedSegmentIndex
     }
 }
@@ -101,7 +135,7 @@ extension PizzaViewController: CollectionViewDelegate {
         var item = viewModel.addonItems[indexPath.item]
         item.selected.toggle()
         viewModel.addonItems[indexPath.item] = item
-        collectionView.reloadData()
+        addonCollectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -110,7 +144,7 @@ extension PizzaViewController: CollectionViewDelegate {
 }
 
 fileprivate extension UIImageView {
-    func updateSize(to size: ProductSize) {
+    func updateSizeScale(to size: ProductSize) {
         UIView.animate(withDuration: 1) {
             var scaleSize: CGFloat {
                 switch size {
@@ -120,6 +154,12 @@ fileprivate extension UIImageView {
                 }
             }
             self.transform = CGAffineTransform.identity.scaledBy(x: scaleSize, y: scaleSize)
+        }
+    }
+    
+    func updateSizeScaleTo(x: CGFloat, y: CGFloat) {
+        UIView.animate(withDuration: 1) {
+            self.transform = CGAffineTransform.identity.scaledBy(x: x, y: y)
         }
     }
 }

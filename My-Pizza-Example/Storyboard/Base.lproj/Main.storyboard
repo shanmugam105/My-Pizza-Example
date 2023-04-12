@@ -110,6 +110,7 @@
                     </view>
                     <connections>
                         <outlet property="addonCollectionView" destination="OPp-OW-ifM" id="C8V-cN-Ita"/>
+                        <outlet property="cartButton" destination="paS-iU-R6E" id="Byz-Ou-Uz8"/>
                         <outlet property="productImageView" destination="k1H-MH-DK0" id="bAz-wT-6X1"/>
                         <outlet property="productPriceLabel" destination="G0J-2y-N5A" id="E3i-65-Ocd"/>
                         <outlet property="productSizeSegmentedView" destination="fDl-8M-vgY" id="roZ-pv-Hu9"/>
