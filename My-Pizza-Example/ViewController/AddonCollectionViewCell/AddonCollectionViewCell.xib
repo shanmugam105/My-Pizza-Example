@@ -32,6 +32,9 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FOf-Pz-kGt">
                                 <rect key="frame" x="8" y="159.66666666666666" width="142" height="20.333333333333343"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="999" constant="20.329999999999998" id="QW7-OI-nFc"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

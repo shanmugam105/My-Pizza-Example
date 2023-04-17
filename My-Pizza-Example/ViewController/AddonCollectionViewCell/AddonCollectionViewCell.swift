@@ -14,6 +14,7 @@ class AddonCollectionViewCell: UICollectionViewCell {
     func configureCell(for addon: AddonItem) {
         addonTitleLabel.text = addon.title + " - \(addon.price)"
         addonImageView.image = UIImage(named: addon.icon)
-        containerView.backgroundColor = addon.selected ? .link : .white
+        addonImageView.backgroundColor = .clear
+        containerView.backgroundColor = addon.selected ? .lightGray.withAlphaComponent(0.4) : .white
     }
 }

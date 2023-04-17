@@ -76,24 +76,26 @@ final class PizzaViewController: UIViewController {
     
     @objc private func submitButtonTapped() {
         animateMainProductToCart()
-        // animateAddonProductToCart()
+        viewModel.addonItems.enumerated().forEach { i, item in
+            if item.selected {
+                self.animateAddonProductToCart(index: i)
+            }
+        }
     }
     
-    /* private func animateAddonProductToCart() {
-        let indexPath = IndexPath(item: 0, section: 0)
+    private func animateAddonProductToCart(index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
         let cell = addonCollectionView.cellForItem(at: indexPath) as! AddonCollectionViewCell
-        
         let copyProduct: UIImageView = cell.addonImageView.copyViewAndAdd(to: self.view)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            cell.addonImageView.updateSizeScaleTo(x: 0.01, y: 0.01)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            copyProduct.updateSizeScaleTo(x: 0.01, y: 0.01)
             UIView.animate(withDuration: 1) {
                 copyProduct.center = self.cartButton.center
-                self.view.layoutIfNeeded()
             } completion: { _ in
                 copyProduct.removeFromSuperview()
             }
         }
-    } */
+    }
     
     private func animateMainProductToCart() {
         let copyProduct: UIImageView = productImageView.copyViewAndAdd(to: self.view)

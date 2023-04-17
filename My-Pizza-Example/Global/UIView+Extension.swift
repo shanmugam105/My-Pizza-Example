@@ -19,13 +19,17 @@ extension UIView {
 }
 
 extension UIView {
-    func copyView<T: UIView>() -> T {
-        return NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as! T
+    func copyView<T: UIView>() -> T? {
+        guard
+            let data = try? NSKeyedArchiver.archivedData(withRootObject:self, requiringSecureCoding:false),
+            let view = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data)
+        else { return nil }
+        return view as? T
     }
     
     @discardableResult
     func copyViewAndAdd<T: UIView>(to view: UIView) -> T {
-        let copyProduct: UIImageView = copyView()
+        let copyProduct: UIImageView = copyView() ?? .init()
         copyProduct.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(copyProduct)
         NSLayoutConstraint.activate([
