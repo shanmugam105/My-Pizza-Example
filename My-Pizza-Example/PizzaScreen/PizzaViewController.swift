@@ -59,6 +59,8 @@ final class PizzaViewController: UIViewController {
                 self.animateAddonProductToCart(index: i)
             }
         }
+        // Update quantity
+        viewModel.cartQuantity += 1
     }
     
     private func animateAddonProductToCart(index: Int) {
@@ -76,13 +78,15 @@ final class PizzaViewController: UIViewController {
     private func moveProductToCartCenter(item: UIImageView, cartView: UIView) {
         submitButton.isUserInteractionEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {[weak self] in
+            guard let self else { return }
             item.updateSizeScaleTo(x: 0.01, y: 0.01)
             UIView.animate(withDuration: 1) {
                 item.center = cartView.center
-                self?.view.layoutIfNeeded()
+                self.view.layoutIfNeeded()
             } completion: { _ in
                 item.removeFromSuperview()
-                self?.submitButton.isUserInteractionEnabled = true
+                self.submitButton.isUserInteractionEnabled = true
+                self.cartButton.addBadge(number: self.viewModel.cartQuantity)
             }
         }
     }

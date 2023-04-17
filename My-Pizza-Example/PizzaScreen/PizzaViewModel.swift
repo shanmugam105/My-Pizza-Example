@@ -11,6 +11,7 @@ final class PizzaViewModel {
     // Items
     var mainItem: MainItem?
     var addonItems: [AddonItem] = []
+    var cartQuantity: Int = 0
     
     func getProductDetails(completion: @escaping (()->Void)) {
         DispatchQueue.global().async {[weak self] in
