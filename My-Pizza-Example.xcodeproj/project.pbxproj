@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5A4E6BC029ED514500856CAD /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E6BBF29ED514400856CAD /* Double+Extension.swift */; };
+		5A4E6BC229ED5AB300856CAD /* PizzaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E6BC129ED5AB300856CAD /* PizzaViewModel.swift */; };
+		5A4E6BC429ED5AE200856CAD /* PizzaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E6BC329ED5AE200856CAD /* PizzaModel.swift */; };
+		5A4E6BC629ED5BEE00856CAD /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E6BC529ED5BEE00856CAD /* UIImageView+Extension.swift */; };
 		5A7A6F6B29E6AC2900F673B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A6F6A29E6AC2900F673B2 /* AppDelegate.swift */; };
 		5A7A6F6F29E6AC2900F673B2 /* PizzaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A6F6E29E6AC2900F673B2 /* PizzaViewController.swift */; };
 		5A7A6F7229E6AC2900F673B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A7A6F7029E6AC2900F673B2 /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 
 /* Begin PBXFileReference section */
 		5A4E6BBF29ED514400856CAD /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		5A4E6BC129ED5AB300856CAD /* PizzaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaViewModel.swift; sourceTree = "<group>"; };
+		5A4E6BC329ED5AE200856CAD /* PizzaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaModel.swift; sourceTree = "<group>"; };
+		5A4E6BC529ED5BEE00856CAD /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		5A7A6F6729E6AC2900F673B2 /* My-Pizza-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Pizza-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A7A6F6A29E6AC2900F673B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A7A6F6E29E6AC2900F673B2 /* PizzaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				5A7A6F8029E6AC9600F673B2 /* AppDelegate */,
-				5A7A6F8129E6ACB200F673B2 /* ViewController */,
+				5A7A6F8129E6ACB200F673B2 /* PizzaScreen */,
 				5A7A6F7F29E6AC8800F673B2 /* Storyboard */,
 				5A7A6F7E29E6AC7500F673B2 /* Global */,
 			);
@@ -79,8 +85,9 @@
 				5A7A6F7329E6AC2C00F673B2 /* Assets.xcassets */,
 				5A7A6F7529E6AC2C00F673B2 /* LaunchScreen.storyboard */,
 				5A7A6F8229E6B87500F673B2 /* UIView+Extension.swift */,
-				5A7A6F8E29E6C4F600F673B2 /* UICollectionView+Extension.swift */,
 				5A4E6BBF29ED514400856CAD /* Double+Extension.swift */,
+				5A4E6BC529ED5BEE00856CAD /* UIImageView+Extension.swift */,
+				5A7A6F8E29E6C4F600F673B2 /* UICollectionView+Extension.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -101,13 +108,15 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
-		5A7A6F8129E6ACB200F673B2 /* ViewController */ = {
+		5A7A6F8129E6ACB200F673B2 /* PizzaScreen */ = {
 			isa = PBXGroup;
 			children = (
+				5A4E6BC329ED5AE200856CAD /* PizzaModel.swift */,
+				5A4E6BC129ED5AB300856CAD /* PizzaViewModel.swift */,
 				5A7A6F6E29E6AC2900F673B2 /* PizzaViewController.swift */,
 				5A7A6F8D29E6C42100F673B2 /* AddonCollectionViewCell */,
 			);
-			path = ViewController;
+			path = PizzaScreen;
 			sourceTree = "<group>";
 		};
 		5A7A6F8D29E6C42100F673B2 /* AddonCollectionViewCell */ = {
@@ -193,7 +202,10 @@
 			files = (
 				5A7A6F8329E6B87500F673B2 /* UIView+Extension.swift in Sources */,
 				5A7A6F8F29E6C4F600F673B2 /* UICollectionView+Extension.swift in Sources */,
+				5A4E6BC429ED5AE200856CAD /* PizzaModel.swift in Sources */,
+				5A4E6BC629ED5BEE00856CAD /* UIImageView+Extension.swift in Sources */,
 				5A4E6BC029ED514500856CAD /* Double+Extension.swift in Sources */,
+				5A4E6BC229ED5AB300856CAD /* PizzaViewModel.swift in Sources */,
 				5A7A6F8B29E6C41A00F673B2 /* AddonCollectionViewCell.swift in Sources */,
 				5A7A6F6F29E6AC2900F673B2 /* PizzaViewController.swift in Sources */,
 				5A7A6F6B29E6AC2900F673B2 /* AppDelegate.swift in Sources */,

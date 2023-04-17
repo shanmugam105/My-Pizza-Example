@@ -7,48 +7,7 @@
 
 import UIKit
 
-enum ProductSize: Int {
-    case small
-    case medium
-    case large
-}
-
-fileprivate typealias CollectionViewDelegate = UICollectionViewDelegate & UICollectionViewDelegateFlowLayout
-
-struct AddonItem {
-    let price: Double
-    let title: String
-    var selected: Bool
-    let icon: String
-}
-
-struct MainItem {
-    let price: Double
-    let title: String
-    var type: ProductSize
-    let icon: String
-    // Original price
-    var originalPrice: Double { (Double(type.rawValue) + 1.0) * price }
-}
-
-final class PizzaViewModel {
-    // Items
-    var mainItem: MainItem?
-    var addonItems: [AddonItem] = []
-    
-    func getProductDetails(completion: @escaping (()->Void)) {
-        DispatchQueue.global().async {[weak self] in
-            self?.mainItem = .init(price: 1000.0, title: "Apple Pizza", type: .medium, icon: "pizza_full")
-            let items: [AddonItem] = [.init(price: 10, title: "Peproni", selected: true, icon: "peproni"),
-                                      .init(price: 5, title: "Onion", selected: false, icon: "onion"),
-                                      .init(price: 12, title: "Mushroom", selected: false, icon: "mushroom"),
-                                      .init(price: 7, title: "Cheese", selected: false, icon: "cheese")]
-            self?.addonItems.append(contentsOf: items)
-            completion()
-        }
-    }
-}
-
+typealias CollectionViewDelegate = UICollectionViewDelegate & UICollectionViewDelegateFlowLayout
 
 final class PizzaViewController: UIViewController {
     private lazy var previousProductIndex: Int = productSizeSegmentedView.selectedSegmentIndex
@@ -64,6 +23,10 @@ final class PizzaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        getProductDetails()
+    }
+    
+    private func getProductDetails() {
         viewModel.getProductDetails { [weak self] in
             DispatchQueue.main.async {
                 let mainItem = self?.viewModel.mainItem
@@ -139,10 +102,7 @@ final class PizzaViewController: UIViewController {
     }
     
     private func updateMainPrice() {
-        let mainItemPrice = self.viewModel.mainItem?.originalPrice ?? 0.0
-        let addonPrice = viewModel.addonItems.filter(\.selected).map{ $0.price }.reduce(0, { $0 + $1})
-        let totalPrice = mainItemPrice + addonPrice
-        self.productPriceLabel.text = totalPrice.asCurrency()
+        self.productPriceLabel.text = viewModel.getUpdatedPrice().asCurrency()
     }
 }
 
@@ -161,35 +121,12 @@ extension PizzaViewController: UICollectionViewDataSource {
 
 extension PizzaViewController: CollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var addonItem = viewModel.addonItems[indexPath.item]
-        addonItem.selected.toggle()
-        viewModel.addonItems[indexPath.item] = addonItem
+        viewModel.selectAddonProduct(for: indexPath.item)
         updateMainPrice()
         addonCollectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 80, height: 80)
-    }
-}
-
-fileprivate extension UIImageView {
-    func updateSizeScale(to size: ProductSize) {
-        UIView.animate(withDuration: 1) {
-            var scaleSize: CGFloat {
-                switch size {
-                case .small: return 0.5
-                case .medium: return 1
-                case .large: return 1.5
-                }
-            }
-            self.transform = CGAffineTransform.identity.scaledBy(x: scaleSize, y: scaleSize)
-        }
-    }
-    
-    func updateSizeScaleTo(x: CGFloat, y: CGFloat) {
-        UIView.animate(withDuration: 1) {
-            self.transform = CGAffineTransform.identity.scaledBy(x: x, y: y)
-        }
     }
 }
