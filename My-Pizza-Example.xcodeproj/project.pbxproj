@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A4E6BC029ED514500856CAD /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E6BBF29ED514400856CAD /* Double+Extension.swift */; };
 		5A7A6F6B29E6AC2900F673B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A6F6A29E6AC2900F673B2 /* AppDelegate.swift */; };
 		5A7A6F6F29E6AC2900F673B2 /* PizzaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A6F6E29E6AC2900F673B2 /* PizzaViewController.swift */; };
 		5A7A6F7229E6AC2900F673B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A7A6F7029E6AC2900F673B2 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A4E6BBF29ED514400856CAD /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		5A7A6F6729E6AC2900F673B2 /* My-Pizza-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Pizza-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A7A6F6A29E6AC2900F673B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A7A6F6E29E6AC2900F673B2 /* PizzaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				5A7A6F7529E6AC2C00F673B2 /* LaunchScreen.storyboard */,
 				5A7A6F8229E6B87500F673B2 /* UIView+Extension.swift */,
 				5A7A6F8E29E6C4F600F673B2 /* UICollectionView+Extension.swift */,
+				5A4E6BBF29ED514400856CAD /* Double+Extension.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			files = (
 				5A7A6F8329E6B87500F673B2 /* UIView+Extension.swift in Sources */,
 				5A7A6F8F29E6C4F600F673B2 /* UICollectionView+Extension.swift in Sources */,
+				5A4E6BC029ED514500856CAD /* Double+Extension.swift in Sources */,
 				5A7A6F8B29E6C41A00F673B2 /* AddonCollectionViewCell.swift in Sources */,
 				5A7A6F6F29E6AC2900F673B2 /* PizzaViewController.swift in Sources */,
 				5A7A6F6B29E6AC2900F673B2 /* AppDelegate.swift in Sources */,
